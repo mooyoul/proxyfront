@@ -13,7 +13,7 @@
     "pretest": "check-engine && rm -Rf dst && tsc -p ./tsconfig.test.json && cd src && find . -name '*.json' -type f -exec cp {} ../dst/{} \\; && cd ..",
     "test": "mocha --exit -t 20000 dst/**/__test__/**/*.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
-    "deploy": "npm run build && npm run pack && serverless deploy --aws-s3-accelerate --verbose",
+    "deploy": "npm run build && npm run pack && serverless deploy --verbose",
     "deploy:stage": "npm run deploy -- -s stage",
     "deploy:prod": "npm run deploy -- -s prod",
     "client": "env NODE_TLS_REJECT_UNAUTHORIZED=0 npx anyproxy --rule anyproxy.rule.js",
