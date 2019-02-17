@@ -31,6 +31,8 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 ## Examples
 
 - Proxying remote resource: https://proxy.aws.debug.so/https://i.ytimg.com/vi/IWJUPY-2EIM/hqdefault.jpg
+- Proxying 5.2MB PDF: https://proxy.aws.debug.so/https://docs.aws.amazon.com/en_us/lambda/latest/dg/lambda-dg.pdf
+- Proxying 397MB Video: https://proxy.aws.debug.so/https://download.blender.org/peach/bigbuckbunny_movies/big_buck_bunny_720p_h264.mov
 - Securing insecure remote resource: https://proxy.aws.debug.so/http://b.vimeocdn.com/ts/345/113/345113661_640.jpg
 - Checking origin connectivity: https://proxy.aws.debug.so/http://not-exists-subdomain.debug.so
 - Checking origin TLS handshake: https://proxy.aws.debug.so/https://debug.so
