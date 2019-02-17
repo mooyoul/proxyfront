@@ -50,7 +50,8 @@ resources:
         DistributionConfig:
           Aliases: ${file(./config.${opt:stage}.yml):CLOUDFRONT_CUSTOM_DOMAIN_NAMES}
           Origins:
-            - DomainName: www.lvh.me
+            # This is dummy domain name. ProxyFront never sends actual requests to this domain!
+            - DomainName: aws.amazon.com
               Id: DummyOrigin
               CustomOriginConfig:
                 OriginProtocolPolicy: http-only
