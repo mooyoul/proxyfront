@@ -22,14 +22,15 @@ export class ResponseContext extends Context {
   public readonly request: CloudFrontRequest;
   public readonly response: CloudFrontResponse;
 
-  private readonly READONLY_HEADERS = READONLY_HEADER_NAMES.get(this.type)!;
+  private readonly READONLY_HEADERS: string[];
 
   constructor(event: CloudFrontResponseEvent) {
     super();
 
     const { config, request, response } = event.Records[0].cf;
 
-    this.type = config.eventType as "origin-response" | "viewer-response";
+    this.type = config.eventType as ResponseEventType;
+    this.READONLY_HEADERS =  READONLY_HEADER_NAMES.get(this.type) || [];
     this.request = request;
     this.response = response;
   }
