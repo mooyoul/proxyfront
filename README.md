@@ -80,6 +80,13 @@ $ npm run deploy:prod # or npm run deploy:stage
 
 That's it! Initial Deployment will take up to 1 hour.
 
+### Running Forward Proxy Server
+
+Since CloudFront does not support `CONNECT` method, You'll need to use custom proxy software to translate these proxy client requests.
+Simply run `env PROXYFRONT_HOST=my-proxy-front.example.com npm run client` to start forward proxy.
+You'll need to create (e.g. `npx run anyproxy-ca --genrate`) & trust created custom Root CA from target devices if you need proxy HTTPS requests.
+For futher details, Please refer to [anyproxy repository](https://github.com/alibaba/anyproxy).  
+
 ## Configuration
 
 There are two kind of configurations: 
