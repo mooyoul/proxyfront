@@ -50,7 +50,7 @@ interface Config {
 // Below are default configuration. Feel free to edit!
 // @todo Refactor to support better multi-stage deployment
 export const Config: Config = {
-  debug: true, // @todo change to false
+  debug: false,
   origin: {
     checkConnectivity: true,
     readTimeout: 15,
