@@ -39,12 +39,7 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 #### Customized Error Pages
 
-![Checks Origin Connectivity](/assets/error-origin-connectivity.png)
-
-![Checks TLS Connectivity](/assets/error-tls-connectivity.png)
-
-![Checks URL](/assets/error-invalid-url.png)
-
+![Customized Error Pages](/assets/error.png)
 
 
 ## Features
