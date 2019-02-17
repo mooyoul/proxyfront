@@ -41,7 +41,12 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 #### Forward Proxy
 
+The `X-Forwarded-For` header shows IP Address of CloudFront Edge PoP: 
 ![Forward Proxy](/assets/forward-proxy.gif)
+
+Bypass Internet Censorship System through CloudFront:
+![Bypass Internet Censorship](/assets/forward-proxy-bypass.gif)
+
 
 #### Customized Error Pages
 
@@ -85,6 +90,9 @@ $ npm run deploy:prod # or npm run deploy:stage
 That's it! Initial Deployment will take up to 1 hour.
 
 ### Running Forward Proxy Server
+
+Built-in Forward Proxy Server:
+![Forward Proxy Server](/assets/forward-proxy-server.gif)
 
 Since CloudFront does not support `CONNECT` method, You'll need to use custom proxy software to translate these proxy client requests.
 Simply run `env PROXYFRONT_HOST=my-proxy-front.example.com npm run client` to start forward proxy.
