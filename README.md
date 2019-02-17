@@ -63,7 +63,7 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 ## Getting Started
 
-Deployment is super easy. ProxyFront provides CLI configurator!
+Deployment is super easy. ProxyFront provides CLI configurator too!
 
 ```bash
 $ git clone https://github.com/mooyoul/proxyfront.git
