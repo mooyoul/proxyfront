@@ -84,19 +84,12 @@ export async function handler(event: CloudFrontRequestEvent): Promise<CloudFront
 }
 
 function extractUrl(context: RequestContext): URL {
-  let candidate: string;
-  let matched: string | null = null;
+  const candidates = [
+    context.request.uri,
+    context.request.uri.slice(1),
+  ];
 
-  candidate = context.request.uri;
-
-  if (/^https?:/.test(candidate)) {
-    matched = candidate;
-  } else {
-    candidate = candidate.slice(1);
-    if (/^https?:/.test(candidate)) {
-      matched = candidate;
-    }
-  }
+  const matched = candidates.find((candidate) => /^https?:/.test(candidate));
 
   if (!matched) {
     throw new HandledError(400, {
