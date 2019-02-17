@@ -1,7 +1,7 @@
 'use strict';
 
 const DISALLOWED_REQUEST_HEADERS = [
-  'host', 'cookie', 'proxy-connection', 'referer',
+  'host', 'proxy-connection',
 ].reduce((hash, v) => {
   hash[v] = true;
   return hash;
@@ -23,7 +23,7 @@ module.exports = {
       return hash;
     }, {});
 
-    requestOptions.hostname = 'proxy.aws.debug.so';
+    requestOptions.hostname = process.env.PROXYFRONT_HOST;
     requestOptions.port = 443;
     requestOptions.path = `/${requestedUrl}`;
     requestOptions.headers = {
