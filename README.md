@@ -41,10 +41,12 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 #### Forward Proxy
 
-The `X-Forwarded-For` header shows IP Address of CloudFront Edge PoP: 
+##### The `X-Forwarded-For` header shows IP Address of CloudFront Edge PoP:
+ 
 ![Forward Proxy](/assets/forward-proxy.gif)
 
-Bypass Internet Censorship System through CloudFront:
+##### Bypass Internet Censorship System through CloudFront:
+
 ![Bypass Internet Censorship](/assets/forward-proxy-bypass.gif)
 
 
@@ -158,6 +160,11 @@ interface Config {
   };
 }
 ```
+
+## Limitations
+
+- Max number of CloudFront loops
+  - (to be updated)
 
 ## Debugging
 
