@@ -156,7 +156,7 @@ interface Input {
 
       const [ , , , region ] = value.split(":");
       if (region !== "us-east-1") {
-        return "ACM Certificate for CloudFront distribution should be issued from us-east-1 (N. Virginia) region.";
+        return "ACM Certificate for CloudFront distribution must be issued from us-east-1 (N. Virginia) region.";
       }
 
       return true;
@@ -303,7 +303,7 @@ function createConfigYaml(input: Input): string {
       "none" :
       "all",
     CLOUDFRONT_FORWARD_HEADER: isStaticProxy ?
-      { Ref: "AWS::NoValue" } :
+      ["Origin"] :
       ["*"],
     CREATE_ROUTE53_RECORDS: hasRoute53Record ?
       "true" :
