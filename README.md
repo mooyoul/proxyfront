@@ -78,7 +78,7 @@ $ vi src/config.ts # Configure advanced configuration
 $ npm run deploy:prod # or npm run deploy:stage
 ```
 
-That's it! Deployment will take up to 1 hours.
+That's it! Initial Deployment will take up to 1 hour.
 
 ## Configuration
 
@@ -91,7 +91,7 @@ Please re-run `npm run configure` if you need to reconfigure your stack.
 
 ## Proxy related Configurations (src/config.ts)
 
-````typescript
+```typescript
 interface Config {
   // If enabled, reserved query parameters like PROXYFRONT_SIMULATE_ORIGIN_REQUEST will work.
   debug: boolean;
@@ -138,14 +138,14 @@ interface Config {
     maxAge?: string;
   };
 }
-````
+```
 
 ## Debugging
 
 If debugging mode is enabled, You can use following query parameters to inspect internal Lambda@Edge request/respones:
 
-- PROXYFRONT_SIMULATE_ORIGIN_REQUEST
-- PROXYFRONT_SIMULATE_ORIGIN_RESPONSE
+- `PROXYFRONT_SIMULATE_ORIGIN_REQUEST`
+- `PROXYFRONT_SIMULATE_ORIGIN_RESPONSE`
 
 
 ## License
