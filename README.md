@@ -35,7 +35,7 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 - Checking origin connectivity: https://proxy.aws.debug.so/http://not-exists-subdomain.debug.so
 - Checking origin TLS handshake: https://proxy.aws.debug.so/https://debug.so
 
-#### Screenshots
+### Screenshots
 
 #### Customized Error Pages
 
