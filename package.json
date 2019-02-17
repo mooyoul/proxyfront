@@ -1,0 +1,62 @@
+{
+  "name": "proxyfront",
+  "version": "1.0.0",
+  "description": "Turn Cloudfront as dynamic forward proxy server",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mooyoul/proxyfront.git"
+  },
+  "scripts": {
+    "build": "check-engine && rm -Rf dst && tsc && cd src && find . \\( -name '*.json' -o -name '*.html' \\) -type f -exec cp {} ../dst/{} \\;  && cd ..",
+    "pack": "rm -f dst.zip && cp package.json dst/package.json && (cp package-lock.json dst/ || true) && (cp .npmrc dst/.npmrc || true) && cd dst && npm install --cache=../.npm --production && npm ls && zip -rqy ../dst.zip . && cd ..",
+    "pretest": "check-engine && rm -Rf dst && tsc -p ./tsconfig.test.json && cd src && find . -name '*.json' -type f -exec cp {} ../dst/{} \\; && cd ..",
+    "test": "mocha --exit -t 20000 dst/**/__test__/**/*.js",
+    "lint": "tslint -c tslint.json 'src/**/*.ts'",
+    "deploy": "npm run build && npm run pack && serverless deploy --aws-s3-accelerate --verbose",
+    "deploy:stage": "npm run deploy -- -s stage",
+    "deploy:prod": "npm run deploy -- -s prod",
+    "client": "env NODE_TLS_REJECT_UNAUTHORIZED=0 npx anyproxy --rule anyproxy.rule.js",
+    "configure": "ts-node tools/configure.ts",
+    "info:stage": "sls info -s stage",
+    "info:prod": "sls info -s prod"
+  },
+  "engines": {
+    "node": "^8.10.0",
+    "npm": ">= 5.6.0"
+  },
+  "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.18",
+    "@types/chai": "^4.1.7",
+    "@types/common-tags": "^1.8.0",
+    "@types/inquirer": "0.0.43",
+    "@types/js-yaml": "^3.12.0",
+    "@types/lodash.template": "^4.4.4",
+    "@types/mocha": "^5.2.5",
+    "@types/node": "^8.10.39",
+    "@types/statuses": "^1.5.0",
+    "@types/tldjs": "^2.3.0",
+    "@vingle/serverless-tag-plugin": "^1.1.2",
+    "chai": "^4.2.0",
+    "check-engine": "^1.7.0",
+    "cli-highlight": "^2.0.0",
+    "common-tags": "^1.8.0",
+    "inquirer": "^6.2.2",
+    "js-yaml": "^3.12.1",
+    "mocha": "^5.2.0",
+    "ow": "^0.12.0",
+    "serverless": "^1.35.1",
+    "serverless-lambda-version": "^0.1.2",
+    "serverless-prune-plugin": "^1.3.2",
+    "tldjs": "^2.3.1",
+    "ts-node": "^7.0.1",
+    "tslint": "^5.12.0",
+    "typescript": "^3.2.2"
+  },
+  "dependencies": {
+    "lodash.template": "^4.4.0",
+    "statuses": "^1.5.0"
+  }
+}
