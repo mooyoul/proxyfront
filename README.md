@@ -37,6 +37,10 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 ### Screenshots
 
+#### Forward Proxy
+
+![Forward Proxy](/assets/forward-proxy.gif)
+
 #### Customized Error Pages
 
 ![Customized Error Pages](/assets/error.png)
