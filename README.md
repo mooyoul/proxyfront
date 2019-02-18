@@ -5,28 +5,20 @@ Turn CloudFront as dynamic forward proxy server
 
 Sometimes you may want to proxy remote resources, which are not owned by you.
 
-For example, Let's suppose that you want to embed "open graph image" on your website.
-but sadly, the server which is hosting given open graph image is small-sized 
-which means sending requests from your website can be potential DoS attack.
+For example, Let's suppose that you want to show 'open graph image' from your website. but sadly, given open graph image is hosted at a small-sized server.  It means sending requests from your website can be a potential DoS attack.
 
-also, Remote can block 'Hot Linking'. in this case, you must proxy the resource to display image.  
+also, Remote web server can block 'Hot Linking'. In this case, you must proxy the resource to display images.
 
-You can implement your own proxy server by using Lambda with API Gateway. 
-but this method has a critical limitation: Response size limit.
+You can implement your own proxy server by using Lambda with API Gateway. but this method has a critical limitation: The response size limit.
 
-In Lambda, you can send response up to 6MB. 
-but, Response body should be encoded with base64 if you are sending binary data. 
-In theory, base64 has additional storage overhead so you can send response up to 4.5MB if you are sending binary data.
-Also, Using Lambda with API Gateway does not support response streaming, which should cause slower First-byte latency.
+In Lambda, you can send a response up to 6MB. but, Response body should be encoded with base64 if you are sending binary data. In theory, base64 has additional storage overhead. so actually, you can send a response up to 4.5MB binary data. Also, Using Lambda with API Gateway does not support response streaming, nor ranged requests (e.g. sending a partial response). It should cause slower first-byte latency time.
 
-But now, We can use Lambda@Edge with CloudFront. We can modify origin dynamically!
-since Lambda@Edge does not handle response directly, we can eliminate response size issue! With Lambda@Edge, we can send response up to 20GByte.
+But now, We can use Lambda@Edge with CloudFront. We can modify origin dynamically! Since Lambda@Edge does not handle response directly, We can eliminate the response size issue! 
+With Lambda@Edge, we can send a response up to 20GByte.
 
-For another example, You should use HTTPS protocol to resources if you are running your website on HTTPS.
-(For further details, Please refer [Google Developers - Mixed Content](https://developers.google.com/web/fundamentals/security/prevent-mixed-content/what-is-mixed-content))
-but if remote does not support HTTPS, you should proxy the resource to secure resource transfer.
+For another example, You should use the HTTPS protocol to resources if you are running your website on the HTTPS protocol. (For further details, Please refer Google Developers - Mixed Content) but if remote does not support HTTPS, you should proxy the resource to secure resource transfer.
 
-Also, ProxyFront can act as 'Forward Proxy' server!
+Also, ProxyFront can act as the 'Forward Proxy' server!
 
 ## Examples
 
@@ -41,11 +33,11 @@ Also, ProxyFront can act as 'Forward Proxy' server!
 
 #### Forward Proxy
 
-##### The `X-Forwarded-For` header shows IP Address of CloudFront Edge PoP:
+##### The `X-Forwarded-For` header shows IP Address of CloudFront Edge PoP
  
 ![Forward Proxy](/assets/forward-proxy.gif)
 
-##### Bypass Internet Censorship System through CloudFront:
+##### Bypass Internet Censorship System through CloudFront
 
 ![Bypass Internet Censorship](/assets/forward-proxy-bypass.gif)
 
@@ -93,13 +85,12 @@ That's it! Initial Deployment will take up to 1 hour.
 
 ### Running Forward Proxy Server
 
-Built-in Forward Proxy Server:
 ![Forward Proxy Server](/assets/forward-proxy-server.gif)
 
 Since CloudFront does not support `CONNECT` method, You'll need to use custom proxy software to translate these proxy client requests.
 Simply run `env PROXYFRONT_HOST=my-proxy-front.example.com npm run client` to start forward proxy.
 You'll need to create (e.g. `npx run anyproxy-ca --genrate`) & trust created custom Root CA from target devices if you need proxy HTTPS requests.
-For futher details, Please refer to [anyproxy repository](https://github.com/alibaba/anyproxy).  
+For further details, Please refer to [anyproxy repository](https://github.com/alibaba/anyproxy).  
 
 ## Configuration
 
@@ -110,7 +101,7 @@ There are two kind of configurations:
 This configuration file should not be edited by manually. 
 Please re-run `npm run configure` if you need to reconfigure your stack.
 
-## Proxy related Configurations (src/config.ts)
+### Proxy related Configurations (src/config.ts)
 
 ```typescript
 interface Config {
@@ -168,12 +159,14 @@ interface Config {
 
 ## Debugging
 
-If debugging mode is enabled, You can use following query parameters to inspect internal Lambda@Edge request/respones:
+If debugging mode is enabled, You can use following query parameters to inspect internal Lambda@Edge request/responses:
 
 - `PROXYFRONT_SIMULATE_ORIGIN_REQUEST`
 - `PROXYFRONT_SIMULATE_ORIGIN_RESPONSE`
 
 
 ## License
+
 [MIT](LICENSE)
+
 See full license on [mooyoul.mit-license.org](http://mooyoul.mit-license.org/) 
