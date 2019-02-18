@@ -28,6 +28,7 @@ Also, ProxyFront can act as the 'Forward Proxy' server!
 - Securing insecure remote resource: https://proxy.aws.debug.so/http://b.vimeocdn.com/ts/345/113/345113661_640.jpg
 - Checking origin connectivity: https://proxy.aws.debug.so/http://not-exists-subdomain.debug.so
 - Checking origin TLS handshake: https://proxy.aws.debug.so/https://debug.so
+- Checking allowed origin (Origin Whitelist): https://proxy.aws.debug.so/https://not-allowed-host.com/foobarbaz
 
 ### Screenshots
 
