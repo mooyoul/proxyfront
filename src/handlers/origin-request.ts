@@ -138,7 +138,7 @@ async function isWhitelisted(
   return false;
 }
 
-async function checkOriginHostname(
+export async function checkOriginHostname(
   hostname: string,
   whitelist?: Array<RegExp | string | ((hostname: string) => Promise<boolean>)>,
 ): Promise<void> {
@@ -146,7 +146,8 @@ async function checkOriginHostname(
     return;
   }
 
-  if (!isWhitelisted(hostname, whitelist)) {
+  const isAllowed = await isWhitelisted(hostname, whitelist);
+  if (!isAllowed) {
     throw new HandledError(403, {
       message: "Forbidden",
       reason: `Access Denied. The requested origin \`${hostname}\` is not allowed.`,
@@ -165,7 +166,8 @@ async function checkCORSOrigin(
     });
   }
 
-  if (!isWhitelisted(origin, whitelist)) {
+  const isAllowed = await isWhitelisted(origin, whitelist);
+  if (!isAllowed) {
     throw new HandledError(403, {
       message: "Forbidden",
       reason: `Access Denied. The requested origin \`${origin}\` is not allowed.`,
