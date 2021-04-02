@@ -8,9 +8,9 @@
     "url": "https://github.com/mooyoul/proxyfront.git"
   },
   "scripts": {
-    "build": "check-engine && rm -Rf dst && tsc && cd src && find . \\( -name '*.json' -o -name '*.html' \\) -type f -exec cp {} ../dst/{} \\;  && cd ..",
-    "pack": "rm -f dst.zip && cp package.json dst/package.json && (cp package-lock.json dst/ || true) && (cp .npmrc dst/.npmrc || true) && cd dst && npm install --cache=../.npm --production && npm ls && zip -rqy ../dst.zip . && cd ..",
-    "pretest": "check-engine && rm -Rf dst && tsc -p ./tsconfig.test.json && cd src && find . -name '*.json' -type f -exec cp {} ../dst/{} \\; && cd ..",
+    "build": "rm -Rf dst && tsc && cd src && find . \\( -name '*.json' -o -name '*.html' \\) -type f -exec cp {} ../dst/{} \\;  && cd ..",
+    "pack": "rm -f dst.zip && cp package.json dst/package.json && (cp package-lock.json dst/ || true) && (cp .npmrc dst/.npmrc || true) && cd dst && npm install --cache=../.npm && npm ls && zip -rqy ../dst.zip . && cd ..",
+    "pretest": "rm -Rf dst && tsc -p ./tsconfig.test.json && cd src && find . -name '*.json' -type f -exec cp {} ../dst/{} \\; && cd ..",
     "test": "mocha --exit -t 20000 dst/**/__test__/**/*.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
     "deploy": "npm run build && npm run pack && serverless deploy --verbose",
@@ -22,7 +22,7 @@
     "info:prod": "sls info -s prod"
   },
   "engines": {
-    "node": "^8.10.0",
+    "node": ">= v10.19.0",
     "npm": ">= 5.6.0"
   },
   "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
