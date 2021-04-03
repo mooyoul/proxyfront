@@ -44,7 +44,7 @@ resources:
         BucketName: ${file(./config.${opt:stage}.yml):BUCKET_NAME}
 
     CloudfrontDistribution:
-      DependsOn: S3Bucket
+      DependsOn: [ S3Bucket ]
       Type: AWS::CloudFront::Distribution
       Properties:
         DistributionConfig:
