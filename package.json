@@ -22,7 +22,7 @@
     "info:prod": "sls info -s prod"
   },
   "engines": {
-    "node": ">= v12.0",
+    "node": ">= 12.x",
     "npm": ">= 5.6.0"
   },
   "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
@@ -40,7 +40,7 @@
     "@types/tldjs": "^2.3.0",
     "@vingle/serverless-tag-plugin": "^1.1.2",
     "chai": "^4.2.0",
-    "check-engine": "^1.7.0",
+    "check-engine": "^1.10.0",
     "cli-highlight": "^2.0.0",
     "common-tags": "^1.8.0",
     "inquirer": "^6.2.2",
