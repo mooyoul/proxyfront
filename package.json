@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "check-engine && rm -Rf dst && tsc && cd src && find . \\( -name '*.json' -o -name '*.html' \\) -type f -exec cp {} ../dst/{} \\;  && cd ..",
-    "pack": "rm -f dst.zip && cp package.json dst/package.json && (cp package-lock.json dst/ || true) && (cp .npmrc dst/.npmrc || true) && cd dst && npm install --cache=../.npm --production && npm ls && zip -rqy ../dst.zip . && cd ..",
+    "pack": "rm -f dst.zip && cp package.json dst/package.json && (cp package-lock.json dst/ || true) && (cp .npmrc dst/.npmrc || true) && cd dst && npm install --cache=../.npm --production && npm ls --production && zip -rqy ../dst.zip . && cd ..",
     "pretest": "check-engine && rm -Rf dst && tsc -p ./tsconfig.test.json && cd src && find . -name '*.json' -type f -exec cp {} ../dst/{} \\; && cd ..",
     "test": "mocha --exit -t 20000 dst/**/__test__/**/*.js",
     "lint": "tslint -c tslint.json 'src/**/*.ts'",
@@ -22,7 +22,7 @@
     "info:prod": "sls info -s prod"
   },
   "engines": {
-    "node": "^8.10.0",
+    "node": ">= 12.x",
     "npm": ">= 5.6.0"
   },
   "author": "MooYeol Prescott Lee <mooyoul@gmail.com>",
@@ -40,7 +40,7 @@
     "@types/tldjs": "^2.3.0",
     "@vingle/serverless-tag-plugin": "^1.1.2",
     "chai": "^4.2.0",
-    "check-engine": "^1.7.0",
+    "check-engine": "^1.10.0",
     "cli-highlight": "^2.0.0",
     "common-tags": "^1.8.0",
     "inquirer": "^6.2.2",
